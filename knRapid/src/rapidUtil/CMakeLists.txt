@@ -32,12 +32,19 @@ set( SOURCES
 include_directories(
   ${ACE_INCLUDE_DIR}
   ${MIRO_INCLUDE_DIR}
+  ${QT_INCLUDE_DIR}
+  ${QT_QTXML_INCLUDE_DIR}
+  ${QT_QTCORE_INCLUDE_DIR}
   ${EIGEN3_INCLUDE_DIR}
   ${Boost_INCLUDE_DIR}
+  ${RTIDDS_INCLUDE_DIR}
 )
 
 link_libraries(
   ${MIRO_miroXml_LIBRARY}  
+  ${MIRO_LIBRARIES}  
+  ${ACE_LIBRARIES}  
+  Boost::system
 )
 
 
@@ -56,8 +63,8 @@ if ( KNRAPID_HAS_DDS )
   )
   link_libraries(
     rapidDds
-    ${KN_knFrameStore_LIBRARY}
-    ${KNDDS_knDds_LIBRARY}  
+    knFrameStore
+    knDds
   )
   include_directories(
     ${KNDDS_INCLUDE_DIR}
@@ -71,6 +78,7 @@ add_library(${LIB_NAME} SHARED
   ${SOURCES}
 )
 add_target_definitions( ${LIB_NAME} ${EXPORT_DEFINE} )
+add_srcdir_definitions(${RTIDDS_DEFINES} RTIDDS_FOUND )
 
 ## test targets
 ##----------------------------------------

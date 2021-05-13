@@ -80,38 +80,38 @@ endmacro( setup_stdint_workaround )
 ## TODO: change filename to Project/config.h
 ##       rather than Project/Config.h
 #########################################
-macro( setup_configure_file )
+macro( setup_configure_file PROJ_NAME1 )
   # check common system include files
   check_common_includes()
 
-  set( DEST_DIR ${ARGN} ) # optional param
-
-  set( CONFIGURE_NAME ${PROJECT_NAME}Config )
+  set(PROJ_NAME "${PROJ_NAME1}")
+  set( CONFIGURE_NAME ${PROJ_NAME}Config )
   set( CONFIGURE_FILENAME ${CONFIGURE_NAME}.h )
+  string(TOUPPER ${PROJ_NAME} PROJ_NAME_UPPER)
 
   # clean up configure file from previous build
-  file( REMOVE ${CMAKE_INSTALL_PREFIX}/include/${DEST_DIR}/${CONFIGURE_FILENAME} )
+  file( REMOVE ${CMAKE_INSTALL_PREFIX}/include/${CONFIGURE_FILENAME} )
 
   # put the configure file in the out of source tree
-  set( CONFIG_IN_FILEPATH ${PROJECT_SOURCE_DIR}/cmake/config.h.in )
+  set( CONFIG_IN_FILEPATH ${PROJECT_SOURCE_DIR}/${PROJ_NAME}/cmake/config.h.in )
   if(NOT EXISTS ${CONFIG_IN_FILEPATH} ) # default config.h.in
-    set( CONFIG_IN_FILEPATH ${PROJECT_SOURCE_DIR}/../cmake/config.h.in )
+    set( CONFIG_IN_FILEPATH ${PROJECT_SOURCE_DIR}/cmake/config.h.in )
   endif( NOT EXISTS ${CONFIG_IN_FILEPATH} )
 
   configure_file(
     ${CONFIG_IN_FILEPATH}
-    ${PROJECT_BINARY_DIR}/src/${DEST_DIR}/${CONFIGURE_FILENAME}
+    ${PROJECT_BINARY_DIR}/${PROJ_NAME}/src/${CONFIGURE_FILENAME}
   )
   add_definitions(-DHAVE_${CONFIGURE_NAME}_H)
-  install(FILES ${PROJECT_BINARY_DIR}/src/${DEST_DIR}/${CONFIGURE_FILENAME}
-          DESTINATION include/${DEST_DIR} )
+  install(FILES ${PROJECT_BINARY_DIR}/${PROJ_NAME}/src/${CONFIGURE_FILENAME}
+          DESTINATION include/ )
 
   if(WIN32)
-    setup_win32_workarounds( "${DEST_DIR}" )
+    setup_win32_workarounds( "" )
   endif(WIN32)
   
   if( NOT ${PROJECT_UPPER}_HAVE_STDINT_H )
-    setup_stdint_workaround( "${DEST_DIR}" )
+    setup_stdint_workaround( "" )
   endif( NOT ${PROJECT_UPPER}_HAVE_STDINT_H )
   
 endmacro( setup_configure_file )

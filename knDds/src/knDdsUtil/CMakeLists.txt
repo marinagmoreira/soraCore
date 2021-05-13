@@ -22,10 +22,16 @@ include_directories(
   ${ACE_INCLUDE_DIR}
   ${MIRO_INCLUDE_DIR}
   ${RTIDDS_INCLUDE_DIR}
+  ${QT_INCLUDE_DIR}
+  ${QT_QTXML_INCLUDE_DIR}
+  ${QT_QTCORE_INCLUDE_DIR}
 )
 
 link_libraries(
-  knDds  
+  knDds
+  ${Boost_LIBRARIES}
+  ${MIRO_LIBRARIES}
+  ${RTIDDS_LIBRARIES}
 )
 
 add_srcdir_definitions(${RTIDDS_DEFINES} RTIDDS_FOUND )

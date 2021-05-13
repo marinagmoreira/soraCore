@@ -56,6 +56,9 @@ set( SOURCES
 include_directories(
   ${ACE_INCLUDE_DIR}
   ${MIRO_INCLUDE_DIR}
+  ${QT_INCLUDE_DIR}
+  ${QT_QTXML_INCLUDE_DIR}
+  ${QT_QTCORE_INCLUDE_DIR}
   ${EIGEN3_INCLUDE_DIR}
   ${Boost_INCLUDE_DIR}
   ${KNDDS_INCLUDE_DIR}
@@ -65,9 +68,12 @@ include_directories(
 link_libraries(
   rapidDds
   rapidUtil
-  ${KN_knMath_LIBRARY}
-  ${MIRO_miroXml_LIBRARY}
-  ${KNDDS_knDds_LIBRARY}
+  knShare
+  knMath
+  ${MIRO_LIBRARIES}
+  knDds
+  ${ACE_LIBRARIES}
+  Boost::thread
 )
 
 

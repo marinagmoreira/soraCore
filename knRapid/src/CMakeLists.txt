@@ -1,6 +1,7 @@
 # FIXME use add_subdirectory for rapidTools because build switches are 
 # broken when a project does not have any libraries to export
 add_subdirectory( rapidTools )
+set(KNRAPID_HAS_DDS TRUE)
 
 add_build_slave ( rapidDds            KNRAPID_HAS_DDS )
 add_build_slave ( rapidExtDds         KNRAPID_HAS_DDS )
@@ -18,7 +19,7 @@ add_build_switch( knSystemInfo        NOT APPLE AND UNIX )
 add_build_switch( knSystemInfoSvc     KNRAPID_HAS_DDS AND KNRAPID_BUILD_knSystemInfo )
 add_subdirectory( knFetchPool )
 add_build_switch( knRaft              KNRAPID_BUILD_rapidCommanding )
-add_build_switch( knProcessManager    KNRAPID_HAS_DDS AND UNIX )
+#add_build_switch( knProcessManager    KNRAPID_HAS_DDS AND UNIX )
 
 
 
