@@ -50,6 +50,7 @@ find_package( Miro )
 
 if( MIRO_BUILD_WITH_QT5 )
   message(STATUS "FOUND QT 5")
+  find_package(Qt5Core REQUIRED)
   find_package(Qt5Widgets REQUIRED)
   find_package(Qt5Xml REQUIRED)
   if (Qt5_POSITION_INDEPENDENT_CODE)
