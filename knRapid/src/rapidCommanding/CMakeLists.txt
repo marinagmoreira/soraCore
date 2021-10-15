@@ -82,6 +82,7 @@ foreach( TARGET ${TARGETS} )
   add_executable( ${TARGET}
     ${TARGET}.cpp
       )
+  target_compile_options(${TARGET} PRIVATE -fPIC)
 endforeach( TARGET ${TARGETS} )
 target_link_libraries( commandManagerTest ${LIB_NAME} )
 target_link_libraries( rapidCmdClient

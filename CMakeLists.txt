@@ -67,6 +67,7 @@ else()
 endif()
 
 build_with_var( WITH_DDS  RTIDDS_FOUND )
+add_definitions(-DQT_NO_VERSION_TAGGING)
 
 add_subdirectory(irgUtil)
 add_subdirectory(kn)

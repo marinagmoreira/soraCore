@@ -126,6 +126,7 @@ if ( KNRAPID_HAS_DDS )
     target_link_libraries(${TARGET}
       ${LIB_NAME}
     )
+    target_compile_options(${TARGET} PRIVATE -fPIC)
   endforeach( TARGET ${TARGETS} )
   target_link_libraries( fileQueueEntryStatePrinter ${Boost_PROGRAM_OPTIONS_LIBRARY})
 

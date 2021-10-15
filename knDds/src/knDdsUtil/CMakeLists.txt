@@ -61,6 +61,7 @@ foreach( TEST_TARGET ${TEST_TARGETS} )
   add_executable( ${TEST_TARGET}
   ${TEST_TARGET}.cpp
   )
+  target_compile_options(${TEST_TARGET} PRIVATE -fPIC)
 endforeach( TEST_TARGET ${TEST_TARGETS} )
 install_targets( /bin ${TEST_TARGETS} )
 

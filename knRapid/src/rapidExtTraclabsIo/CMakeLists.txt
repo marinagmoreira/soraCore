@@ -66,6 +66,7 @@ foreach( TARGET ${TARGETS} )
   add_executable( ${TARGET} 
     ${TARGET}.cpp
   )
+  target_compile_options(${TARGET} PRIVATE -fPIC)
 endforeach( TARGET ${TARGETS} ) 
 
 install_library( ${LIB_NAME} )
